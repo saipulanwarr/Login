@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from './components/layout/Navbar';
+import Home from './components/home/Home';
+import About from './components/about/About';
+import Book from './components/book/Book';
+import CreateBook from './components/book/CreateBook';
+import EditBook from './components/book/EditBook';
+import NotFound from './components/layout/NotFound';
+import Login from './components/auth/Login';
+import Upload from './components/upload/Upload';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/book" component={Book} />
+        <Route path="/add-book" component={CreateBook} />
+        <Route path="/edit-book/:bookId" component={EditBook} />
+        <Route path="/about" component={About} />
+        <Route path="/login" component={Login} />
+        <Route path="/upload" component={Upload} />
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
   );
 }
 
